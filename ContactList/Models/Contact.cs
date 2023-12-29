@@ -6,7 +6,7 @@ public class Contact : IContact
 {
     public string FirstName { get; set; } = null!;
     public string LastName { get; set; } = null!;
-    public int PhoneNumber { get; set; }
+    public string PhoneNumber { get; set; } = null!;
     public string Email { get; set; } = null!;
     public string Address { get; set; } = null!;
 
@@ -20,7 +20,7 @@ public class Contact : IContact
         Console.WriteLine("Please enter your lastname: ");
         contact.LastName = Console.ReadLine()!;
         Console.WriteLine("Please enter your phonenumber: ");
-        contact.PhoneNumber = Convert.ToInt32(Console.ReadLine());
+        contact.PhoneNumber = Console.ReadLine()!;
         Console.WriteLine("Please enter your email: ");
         contact.Email = Console.ReadLine()!;
         Console.WriteLine("Please enter your adress: ");

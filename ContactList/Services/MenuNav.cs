@@ -9,13 +9,13 @@ public class MenuNav()
     public void MenuOptions()
     {
         ContactListControler contactList = new ContactListControler();
-        FileService fileService = new FileService();
+        FileService fileService = new FileService(@"C:\Projects\Content.txt");
 
         while (true) {
             
-            
-            Console.WriteLine("######################MainMenu######################\n\n\n");
-            Console.WriteLine("Select A Number To Start:");
+            //choises for the user 
+            Console.WriteLine($"{"",-31}######################    MainMenu    ######################\n\n\n");
+            Console.WriteLine("Select A Number To Start:\n");
             Console.WriteLine($"{"1_",-3} Add New Contact To The List");
             Console.WriteLine($"{"2_",-3} Show All Contacts In The List");
             Console.WriteLine($"{"3_",-3} Remove A Contact From The List");
@@ -23,17 +23,20 @@ public class MenuNav()
             int menu = Convert.ToInt32(Console.ReadLine());
             switch (menu)
             {
+                
                 case 1:
                     Console.Clear();
-                    MainMenu();
+                    MainMenu(contactList,fileService);
                     break;
                 case 2:
                     Console.Clear();
-                    Console.WriteLine("Here Is All Your Saved Contacts:");                  
+                    Console.WriteLine("Here Is All Your Saved Contacts:");
+                    Console.WriteLine("-----------------------------------");
                     var jsonlist = fileService.GetContact();
                     contactList.AddList(jsonlist);
                     Console.ReadKey();
                     break;
+                    
                 case 3:
                     Console.Clear();
                     Console.WriteLine("Please Enter The email Of The Contact That You Want To Remove:");
@@ -56,13 +59,14 @@ public class MenuNav()
 
 
     
-    public void MainMenu()
+    public void MainMenu(ContactListControler contactList, FileService fileService)
     {
-        ContactListControler contactList = new ContactListControler();
-        FileService fileService = new FileService();
+        
+        
 
         while (true)
         {
+            
             Contact contact = new Contact();
             contact = contact.CreateContact();
             contactList.AddContactToList(contact);

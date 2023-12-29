@@ -9,14 +9,19 @@ namespace ContactList.Services;
 
 public class FileService : IFileService
 {
-    private readonly string _filePath = @"C:\Projects\content.txt";
+    private string filePath;
+    public FileService(string _filePath)
+    {
+        this.filePath = _filePath;
+    }
     private ContactListControler contactListControler = new ContactListControler();
 
+    //This method is for reading json info from saved file
     public List<Contact> GetContact()
     {
 
 
-        using StreamReader reader = new(_filePath);
+        using StreamReader reader = new(filePath);
         var json = reader.ReadToEnd();
 
 
@@ -25,13 +30,13 @@ public class FileService : IFileService
         return contacts;
     }
 
- 
+    // This method is for saving files in json form
     public void SaveContactAsJson( List<Contact> contacts)
     {
         try
         {
             Console.WriteLine(contacts.Count);
-            using (var sw = new StreamWriter(_filePath))
+            using (var sw = new StreamWriter(filePath))
             {
 
                 string json = JsonSerializer.Serialize(contacts);

@@ -38,6 +38,7 @@ public class ContactListControler
         }
     }
 
+    //this method will search for given email index and delete it if its there
     public void RemoveContactFromListByEmail(string Email)
     {
         try
